@@ -1,5 +1,7 @@
 const Service = require('egg').Service;
-const ObjectId = require('mongoose').Types.ObjectId
+// const ObjectId = require('mongoose').Types.ObjectId
+// const moment = require('moment')
+
 class CommentService extends Service {
   // 获取文章详情的评论
   async getPostComment() {
@@ -10,8 +12,11 @@ class CommentService extends Service {
   // 分页
   async pagingQuery() {
     const { ctx } = this
-    const data = await ctx.model.Comment.findOne({"postId": ObjectId(ctx.query.id)})
-    console.log(ObjectId(ctx.query.id))
+
+    const data = await ctx.model.Comment.findOne({
+      "postId": ctx.query.id
+    }, { _id: 0 })
+    // console.log(moment(ObjectId(data._id).getTimestamp()).format('YYYY-MM-DD HH:mm:ss'))
     const total = await ctx.model.Comment.estimatedDocumentCount()
     return {
       data,

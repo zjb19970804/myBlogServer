@@ -42,7 +42,7 @@ class UserService extends Service {
             userSource: 'GitHub'
           })
         })
-        const token = this.createToken(userInfo)
+        const token = 'Bearer ' + this.createToken(userInfo)
         const returnInfo = {
           avatar: userInfo.avatar_url,
           name: body.data.name,
@@ -75,6 +75,7 @@ class UserService extends Service {
       this.app.jwt.verify(token, this.app.config.jwt.secret, function (err, decoded) {
         let result = {};
         if (err) {
+          console.log(err)
           /*
             err = {
               name: 'TokenExpiredError',

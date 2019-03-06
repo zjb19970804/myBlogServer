@@ -33,7 +33,8 @@ module.exports = appInfo => {
   };
   config.jwt = {
     enable: false,
-    secret: "zjbblog"
+    secret: "zjbblog",
+    ignore: []
   };
 
   // use for cookie sign key, should change to your own and keep security
