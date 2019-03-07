@@ -15,7 +15,7 @@ class PraiseService extends Service {
   // 给评论点赞
   async thumbsUp() {
     const { ctx } = this
-    const data = ctx.helper.verifyToken(ctx)
+    const data = await ctx.helper.verifyToken(ctx)
     console.log(data)
     const { commentId, actions } = ctx.query
     // const res = await ctx.model.Praise.create({
@@ -23,6 +23,7 @@ class PraiseService extends Service {
     //   commentId,
     //   actions
     // })
+    return {}
   }
 }
 

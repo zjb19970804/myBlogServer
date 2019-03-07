@@ -30,18 +30,27 @@ class UserService extends Service {
       if (body.status === 200) {
         const userInfo = {
           avatar_url: body.data.avatar_url,
-          name: body.data.name,
-          id: body.data.id
+          name: body.data.name
         }
-        // 创建用户
-        this.ctx.helper.tryCatch(async () => {
+        const openId = body.data.id
+        const isSave = await this.ctx.model.User.findOne({openId})
+        if(isSave !== null) {
+          userInfo.userId = isSave._id
+        }else {
+          // 创建用户
           await this.ctx.model.User.create({
             userName: userInfo.name,
             avatar: userInfo.avatar_url,
-            openId: userInfo.id,
+            openId: body.data.id,
             userSource: 'GitHub'
+          }, (err, data) => {
+            if (err) {
+              console.error(err)
+            } else {
+              userInfo.userId = data._id
+            }
           })
-        })
+        }
         const token = 'Bearer ' + this.createToken(userInfo)
         const returnInfo = {
           avatar: userInfo.avatar_url,

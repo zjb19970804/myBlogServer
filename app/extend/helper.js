@@ -21,5 +21,6 @@ exports.getAccessToken = ctx => {
 exports.verifyToken = async (ctx) => {
   let token = this.getAccessToken(ctx);
   let verifyResult = await ctx.service.user.verifyToken(token);
+  console.log(verifyResult)
   return verifyResult;
 }

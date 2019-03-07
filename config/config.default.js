@@ -34,6 +34,7 @@ module.exports = appInfo => {
   config.jwt = {
     enable: false,
     secret: "zjbblog",
+    expiresIn: "12h",
     ignore: []
   };
 
