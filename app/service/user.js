@@ -102,7 +102,7 @@ class UserService extends Service {
       this.app.jwt.verify(token, this.app.config.jwt.secret, function (err, decoded) {
         let result = {};
         if (err) {
-          console.log(err)
+          console.error(err)
           /*
             err = {
               name: 'TokenExpiredError',

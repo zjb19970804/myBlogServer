@@ -8,7 +8,6 @@ class UserController extends Controller {
       signed: false,
       maxAge: 3600 * 1000
     })
-    console.log(body)
     this.ctx.body = body
   }
 

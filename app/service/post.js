@@ -60,8 +60,6 @@ class PostService extends Service {
     const data = await ctx.model.Post.find({
       labelId: ObjectId(id)
     })
-
-    console.log(data)
     return ctx.helper.returnBody(data)
   }
 
