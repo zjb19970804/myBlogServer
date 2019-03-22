@@ -12,6 +12,9 @@ exports.returnBody = (data = null, code = 200, message = 'success') => {
     message
   }
 }
+exports.loginFailure = () => {
+  return this.returnBody(null, -1, '登录失效')
+}
 // 获取 Token
 exports.getAccessToken = ctx => {
   let bearerToken = ctx.request.header.authorization;
@@ -21,6 +24,5 @@ exports.getAccessToken = ctx => {
 exports.verifyToken = async (ctx) => {
   let token = this.getAccessToken(ctx);
   let verifyResult = await ctx.service.user.verifyToken(token);
-  console.log(verifyResult)
   return verifyResult;
 }

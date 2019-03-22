@@ -1,29 +1,23 @@
 module.exports = app => {
   const mongoose = app.mongoose
   const Schema = mongoose.Schema
-  const CommentChild = new Schema({
-    avatar: {
-      type: String,
-      default: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
-    },
-    userName: String,
-    msg: String,
-    like: Number,
-    dislike: Number,
-    reply: Array
-  })
   const CommentSchema = new Schema({
     postId: {
-      type: String
+      type: Schema.Types.ObjectId,
+      ref: 'posts'
     },
-    reactionNum: {
-      type: Number,
-      default: 0
+    // 一级回复，回复文章的
+    firstId: {
+      type: String,
+      default: ''
     },
-    CommentList: {
-      type: Array,
-      default: [CommentChild],
-    }
+    // 二级回复，回复评论的
+    replyToId: {
+      type: String,
+      default: ''
+    },
+    userId: Schema.Types.ObjectId,
+    msg: String
   })
   return mongoose.model('Comment', CommentSchema, 'comment')
 }

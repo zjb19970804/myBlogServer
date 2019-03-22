@@ -10,22 +10,22 @@ module.exports = app => {
       type: String,
       required: true
     },
-    updateTime: {
-      type: Date,
-      default: new Date(),
-      required: true
-    },
     watchTimes: {
-      type: Number,
-      default: 0
-    },
-    reactionNum: {
       type: Number,
       default: 0
     },
     poster: {
       type: String,
       default: 'http://placehold.it/532x200'
+    },
+    label: {
+      type: String,
+      default: '其它'
+    },
+    labelId: mongoose.Types.ObjectId,
+    reprint: {
+      type: String,
+      default: ''
     }
   })
   return mongoose.model('Post', PostSchema, 'posts')

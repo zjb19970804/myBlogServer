@@ -5,9 +5,15 @@ class UserController extends Controller {
     const body = await this.service.user.accessToken()
     this.ctx.cookies.set('token', body.data, {
       httpOnly: false,
-      signed: false
+      signed: false,
+      maxAge: 3600 * 1000
     })
+    console.log(body)
     this.ctx.body = body
+  }
+
+  async getBloginfo() {
+    this.ctx.body = await this.ctx.service.user.getBloginfo()
   }
 }
 

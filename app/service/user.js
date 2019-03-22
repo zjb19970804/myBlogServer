@@ -66,6 +66,24 @@ class UserService extends Service {
     }
   }
 
+  // 获取博客的信息
+  async getBloginfo() {
+    const { ctx } = this
+    const reprintNum = await ctx.model.Post.find({
+      reprint: {$ne: ''}
+    }).countDocuments()
+    const originalNum = await ctx.model.Post.find({
+      reprint: ''
+    }).countDocuments()
+    const labelNum = await ctx.model.Label.countDocuments()
+    const obj = {
+      reprintNum,
+      originalNum,
+      labelNum
+    }
+    return ctx.helper.returnBody(obj)
+  }
+
   /**
    * 生成 Token
    * @param {Object} data

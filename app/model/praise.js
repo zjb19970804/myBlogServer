@@ -3,7 +3,7 @@ module.exports = app => {
   const Schema = mongoose.Schema
   const PraiseSchema = new Schema({
     userId: String,
-    commentId: Schema.ObjectId,
+    commentId: Schema.Types.ObjectId,
     // ture为赞，false为踩
     actions: Boolean
   })
