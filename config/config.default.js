@@ -21,14 +21,13 @@ module.exports = appInfo => {
   };
   // 跨域配置
   config.security = {
-    domainWhiteList: ['http://127.0.0.1:3000'],
+    domainWhiteList: ['www.zjbweb.com'],
     csrf: {
       enable: false
     },
   };
   config.cors = {
     credentials: true,
-    origin: 'http://127.0.0.1:3000',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
   };
   config.jwt = {
